@@ -231,13 +231,7 @@ class InstallationPage(Page):
             self.main, h*4 + w, h*7,
             "lock.bmp", _("Password:"), None)
         label.move(h*4 + w + 42, h*7 - 24)
-        password = ""
-        if self.info.password:
-            password = "dartz"
-        elif self.info.test:
-            password = "dartz"
-        self.password1 = "dartz"
-        self.password2 = "dartz"
+        password = "dartz"
         self.error_label = ui.Label(
             self.main,
             40, self.main.height - 20, self.main.width - 80, 12,
@@ -308,34 +302,7 @@ class InstallationPage(Page):
         language = self.language_list.get_text()
         language = language2lang_country.get(language, None)
         locale = lang_country2linux_locale.get(language, self.info.locale)
-        username = self.username.get_text()
-        password1 = self.password1.get_text()
-        password2 = self.password2.get_text()
-        error_message = ""
-        if not username:
-            error_message = _("Please enter a valid username.")
-        elif username != username.lower():
-            error_message = _("Please use all lower cases in the username.")
-        elif " " in username:
-            error_message =  _("Please do not use spaces in the username.")
-        elif not re_username_first.match(username):
-            error_message =  _("Your username must start with a lower-case letter.")
-        elif not re_username.match(username):
-            error_message =  _("Your username must contain only lower-case letters, numbers, hyphens, and underscores.")
-        elif username in reserved_usernames:
-            error_message = _("The selected username is reserved, please select a different one.")
-        elif not password1:
-            error_message = _("Please enter a valid password.")
-        elif " " in password1:
-            error_message = _("Please do not use spaces in the password.")
-        elif password1 != password2:
-            error_message = _("Passwords do not match.")
-        self.error_label.set_text(error_message)
-        if error_message:
-            if self.info.non_interactive:
-                log.error("ERROR: %s Exiting." % error_message)
-                self.frontend.quit()
-            return
+        username = "dartz"
         log.debug(
             "target_drive=%s, installation_size=%sMB, distro_name=%s, language=%s, locale=%s, username=%s" \
             % (drive.path, installation_size_mb, self.info.distro.name, language, locale, username))
