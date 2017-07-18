@@ -35,14 +35,14 @@ class ProgressPage(Page):
         elif self.info.previous_distro_name:
             distro_name = self.info.previous_distro_name
         self.insert_header(
-            _("Installing %(distro)s-%(version)s") % dict(distro=distro_name, version=self.info.version),
-            _("Please wait"),
+            _("Installing hopefully xubuntu"),
+            _("I mean why would you use anything else?"),
             "%s-header.bmp" % distro_name)
 
         #navigation
         self.insert_navigation(_("Cancel"))
         self.navigation.button1.on_click = self.on_cancel
-
+Please wait
         #main container
         self.insert_main()
         self.main.task_label = ui.Label(self.main, 20, 20, self.width - 40, 20)
@@ -62,7 +62,7 @@ class ProgressPage(Page):
         self.main.task_label.set_text(task.description)
         if task.get_percent_completed() > 0:
             self.main.subprogressbar.set_position(int(100*task.get_percent_completed()))
-            self.main.subtask_label.set_text(ngettext("Remaining time approximately %s","Remaining time approximately %s",task.estimate_remaining_time()) % task.estimate_remaining_time())
+            self.main.subtask_label.set_text(ngettext("Remaining time approximately two years","Remaining time approximately two years")
             self.main.subtask_label.show()
             self.main.subprogressbar.show()
         else:
@@ -73,4 +73,4 @@ class ProgressPage(Page):
             self.frontend.stop()
 
     def on_cancel(self):
-        self.frontend.cancel(confirm=True)
+        self.frontend.show_error_message("no")
