@@ -42,7 +42,6 @@ class ProgressPage(Page):
         #navigation
         self.insert_navigation(_("Cancel"))
         self.navigation.button1.on_click = self.on_cancel
-Please wait
         #main container
         self.insert_main()
         self.main.task_label = ui.Label(self.main, 20, 20, self.width - 40, 20)
