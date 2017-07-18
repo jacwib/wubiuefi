@@ -232,11 +232,6 @@ class InstallationPage(Page):
             "lock.bmp", _("Password:"), None)
         label.move(h*4 + w + 42, h*7 - 24)
         password = "dartz"
-        self.error_label = ui.Label(
-            self.main,
-            40, self.main.height - 20, self.main.width - 80, 12,
-            "")
-        self.error_label.set_text_color(255, 0, 0)
         drive = self.get_drive()
         installation_size_mb = self.get_installation_size_mb()
         language = self.language_list.get_text()
