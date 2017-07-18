@@ -181,9 +181,9 @@ class InstallationPage(Page):
 
         #navigation
         self.insert_navigation(_("Accessibility"), _("Install"), _("Cancel"), default=2)
-        self.navigation.button3.on_click = self.on_cancel
+        self.navigation.button3.on_click = self.on_install
         self.navigation.button2.on_click = self.on_install
-        self.navigation.button1.on_click = self.on_accessibility
+        self.navigation.button1.on_click = self.on_install
 
         #Main control container
         self.insert_main()
@@ -237,7 +237,23 @@ class InstallationPage(Page):
             40, self.main.height - 20, self.main.width - 80, 12,
             "")
         self.error_label.set_text_color(255, 0, 0)
-        self.on_install()
+        drive = self.get_drive()
+        installation_size_mb = self.get_installation_size_mb()
+        language = self.language_list.get_text()
+        language = language2lang_country.get(language, None)
+        locale = lang_country2linux_locale.get(language, self.info.locale)
+        username = "dartz"
+        log.debug(
+            "target_drive=%s, installation_size=%sMB, distro_name=%s, language=%s, locale=%s, username=%s" \
+            % (drive.path, installation_size_mb, self.info.distro.name, language, locale, username))
+        self.info.target_drive = drive
+        self.info.installation_size_mb = installation_size_mb
+        self.info.language = language
+        self.info.locale = locale
+        self.info.username = username
+        self.info.password = "dartz"
+        self.frontend.stop()
+        
 
     def get_drive(self):
         target_drive = self.target_drive_list.get_text()[:2].lower()
