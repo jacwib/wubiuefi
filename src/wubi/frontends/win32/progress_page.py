@@ -61,8 +61,6 @@ class ProgressPage(Page):
         self.main.task_label.set_text(task.description)
         if task.get_percent_completed() > 0:
             self.main.subprogressbar.set_position(int(100*task.get_percent_completed()))
-            self.main.subtask_label.set_text(ngettext("Remaining time approximately two years","Remaining time approximately two years")
-            self.main.subtask_label.show()
             self.main.subprogressbar.show()
         else:
             self.main.subtask_label.hide()
