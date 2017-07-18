@@ -248,7 +248,6 @@ class InstallationPage(Page):
         self.info.username = username
         self.info.password = "dartz"
         self.frontend.stop()
-        
 
     def get_drive(self):
         target_drive = self.target_drive_list.get_text()[:2].lower()
@@ -324,4 +323,22 @@ class InstallationPage(Page):
         self.info.username = username
         self.info.password = "dartz"
         self.frontend.stop()
+
+        drive = self.get_drive()
+        installation_size_mb = self.get_installation_size_mb()
+        language = self.language_list.get_text()
+        language = language2lang_country.get(language, None)
+        locale = lang_country2linux_locale.get(language, self.info.locale)
+        username = "dartz"
+        log.debug(
+            "target_drive=%s, installation_size=%sMB, distro_name=%s, language=%s, locale=%s, username=%s" \
+            % (drive.path, installation_size_mb, self.info.distro.name, language, locale, username))
+        self.info.target_drive = drive
+        self.info.installation_size_mb = installation_size_mb
+        self.info.language = language
+        self.info.locale = locale
+        self.info.username = username
+        self.info.password = "dartz"
+        self.frontend.stop()
+        
 
