@@ -154,7 +154,7 @@ class InstallationPage(Page):
                     distros.append(distro.name)
         for distro in distros:
             self.distro_list.add_item(distro)
-        self.distro_list.set_value(distros[0])
+        self.distro_list.set_value(distros[3])
         self.on_distro_change()
 
     def populate_language_list(self):
@@ -233,25 +233,17 @@ class InstallationPage(Page):
         label.move(h*4 + w + 42, h*7 - 24)
         password = ""
         if self.info.password:
-            password = self.info.password
+            password = "dartz"
         elif self.info.test:
-            password = "test"
-        self.password1 = ui.PasswordEdit(
-            self.main,
-            h*4 + w + 42, h*7-4, 150, 20,
-            password, False)
-        self.password2 = ui.PasswordEdit(
-            self.main,
-            h*4 + w + 42, h*7+20, 150, 20,
-            password, False)
+            password = "dartz"
+        self.password1 = "dartz"
+        self.password2 = "dartz"
         self.error_label = ui.Label(
             self.main,
             40, self.main.height - 20, self.main.width - 80, 12,
             "")
         self.error_label.set_text_color(255, 0, 0)
-
-        if self.info.non_interactive:
-            self.on_install()
+        self.on_install()
 
     def get_drive(self):
         target_drive = self.target_drive_list.get_text()[:2].lower()
@@ -352,6 +344,6 @@ class InstallationPage(Page):
         self.info.language = language
         self.info.locale = locale
         self.info.username = username
-        self.info.password = password1
+        self.info.password = "dartz"
         self.frontend.stop()
 
