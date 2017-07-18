@@ -38,15 +38,12 @@ class InstallationFinishPage(Page):
         #main container
         self.insert_main()
         self.main.set_background_color(255,255,255)
-        self.main.title = ui.Label(self.main, 40, 20, self.main.width - 80, 60, _("Completing the %s Setup Wizard") % self.info.distro.name)
+        self.main.title = ui.Label(self.main, 40, 20, self.main.width - 80, 60, _("Congratulations! You won the %s Setup Wizard") % self.info.distro.name)
         self.main.title.set_font(size=20, bold=True, family="Arial")
-        self.main.label = ui.Label(self.main, 40, 90, self.main.width - 80, 40, _("You need to reboot to complete the installation"))
-        self.main.reboot_now = ui.RadioButton(self.main, 60, 150, self.main.width - 100, 20, _("Reboot now"))
-        self.main.reboot_later = ui.RadioButton(self.main, 60, 180, self.main.width - 100, 20, _("I want to manually reboot later"))
+        self.main.label = ui.Label(self.main, 40, 90, self.main.width - 80, 40, _("You need to run some awkward reboot command to complete the install"))
+        self.main.reboot_now = ui.RadioButton(self.main, 60, 150, self.main.width - 100, 20, _("Do nothing"))
         self.main.reboot_later.set_check(True)
 
     def on_finish(self):
-        if self.main.reboot_now.is_checked():
-            self.info.run_task = "reboot"
         self.frontend.stop()
 
